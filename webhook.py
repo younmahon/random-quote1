@@ -21,7 +21,7 @@ def webhook():
     res = makeResponse(req)
 
     res = json.dumps(res, indent=4)
-    # print(res)
+    print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
@@ -34,17 +34,11 @@ def makeResponse(req):
     parameters = result.get("parameters")
     city = parameters.get("geo-city")
     name123 = parameters.get("given-name")
-    r=requests.get('http://api.apixu.com/v1/current.json?key=a357348be936488c820132836192703%20&q='+city)
-    #txt=requests.get('https://quota.glitch.me/random')
-    #json_object1 = txt.json()
-    #text1= json_object1.get("quoteText")
-    json_object = r.json()
-    weather=json_object.get("current")
-    temperature=weather.get("temp_c")
-    strtemperature=str(int(temperature))
-    # speech = "Listen " + name123 + ", The forecast for "+city+" is "+strtemperature+" degrees. Remember this quote for today : "+text1
-    speech = "The forecast now for "+city +" is "+strtemperature+" degrees. "
-    return{
+    txt=requests.get('https://quota.glitch.me/random')
+    json_object1 = txt.json()
+    text1= json_object1.get("quoteText")
+    speech = "Listen " + name123 + "." Remember this quote for today : "+text1
+        return{
   "fulfillmentText": speech,
   "fulfillmentMessages": [
     {
